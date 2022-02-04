@@ -1,0 +1,16 @@
+@import './components/Card/Styles.scss';
+@import './components/Button/Styles.scss';
+@import './components/Modal/Styles.scss';
+
+.comics-wrapper {
+  width: 100%;
+  display: flex;
+
+  & > .container {
+    margin: auto;
+    width: $CONTAINER-RATIO;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-rows: repeat(2, auto) repeat(3, 1fr);
+  }
+}

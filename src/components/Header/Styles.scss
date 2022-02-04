@@ -1,0 +1,43 @@
+.header-wrapper {
+  width: 100%;
+  background-color: black;
+  display: flex;
+  padding: 1% 0;
+  box-sizing: border-box;
+
+  .container {
+    width: $CONTAINER-RATIO;
+    display: inline-flex;
+    align-items: center;
+    margin: auto;
+
+    .logo-wrapper {
+      width: 20%;
+    }
+
+    .menu-items {
+      width: 75%;
+      display: inline-flex;
+      color: white;
+      justify-content: space-evenly;
+      font: $PRIMARY-FONT;
+
+      .item {
+        a {
+          color: white;
+          text-decoration: none;
+          display: inline-block;
+          font-weight: 600;
+
+          &::first-letter {
+            text-transform: uppercase;
+          }
+
+          &._current {
+            color: $red;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.breadcrumb-wrapper {
+  display: flex;
+  margin: 1% 0;
+
+  .container {
+    width: $CONTAINER-RATIO;
+    margin: auto;
+    color: $gray;
+    font-weight: 600;
+
+    span {
+      display: inline-block;
+
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+}

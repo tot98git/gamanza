@@ -1,0 +1,29 @@
+$border-radius: 5px;
+$PRIMARY-FONT: normal normal bold Quicksand;
+$CONTAINER-RATIO: 70%;
+$MODAL-WIDTH: 50%;
+
+@import './variables.scss';
+@import './pages.scss';
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Quicksand';
+}
+
+._flex {
+  display: flex;
+
+  &._column {
+    flex-direction: column;
+  }
+
+  &._center {
+    align-items: center;
+  }
+}
+
+._inline-flex {
+  display: inline-flex;
+}

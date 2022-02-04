@@ -1,0 +1,16 @@
+.core-btn {
+  border-radius: $border-radius;
+  background-color: $red;
+  color: white;
+  border: unset;
+  padding: 5% 3%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  font-family: 'Quicksand';
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
