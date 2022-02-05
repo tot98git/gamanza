@@ -20,7 +20,7 @@ export const mapComicItemToCard = (item) => {
 export const mapComicProperties = (item) => {
   const {
     diamondCode,
-    focDate,
+    dates = [],
     format = '',
     pageCount,
     creators: { items: creators = [] } = {},
@@ -32,11 +32,18 @@ export const mapComicProperties = (item) => {
   let readableFormat = COMICS_FORMAT_LABELS[format.toUpperCase()] || '';
   readableFormat =
     readableFormat.charAt(0).toUpperCase() + readableFormat.slice(1);
-  const readableDate = focDate;
+  const { date } = dates.find(({ type }) => type === 'focDate') || {};
+  const parsedDate = new Date(date);
+
+  const day = parsedDate.getDay();
+  const month = parsedDate.getMonth();
+  const year = parsedDate.getFullYear();
+
+  const readableDate = day && month && year ? `${day}/${month}/${year}` : '';
 
   return {
     diamondCode,
-    readableDate,
+    date: readableDate,
     pages: pageCount,
     format: readableFormat,
     characters: readableCharacters,

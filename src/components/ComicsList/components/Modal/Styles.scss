@@ -27,6 +27,17 @@
         padding: 1%;
         box-sizing: border-box;
 
+        @include responsive_flow {
+          .img-wrapper,
+          .content {
+            width: 100% !important;
+          }
+
+          .content {
+            text-align: center;
+          }
+        }
+
         .img-wrapper {
           width: 30%;
           display: flex;

@@ -2,9 +2,6 @@ $border-radius: 5px;
 $PRIMARY-FONT: normal normal bold Quicksand;
 $CONTAINER-RATIO: 70%;
 $MODAL-WIDTH: 50%;
-
-@import './variables.scss';
-@import './pages.scss';
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap');
 
 body {
@@ -41,3 +38,15 @@ body {
     transform: scale(1, 1);
   }
 }
+
+@mixin responsive_flow {
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+
+    @content;
+  }
+}
+
+@import './variables.scss';
+@import './pages.scss';

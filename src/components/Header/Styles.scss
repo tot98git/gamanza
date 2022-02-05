@@ -11,6 +11,8 @@
     align-items: center;
     margin: auto;
 
+    @include responsive_flow();
+
     .logo-wrapper {
       width: 10%;
     }
@@ -21,6 +23,12 @@
       color: white;
       justify-content: space-evenly;
       font: $PRIMARY-FONT;
+
+      @include responsive_flow {
+        .item {
+          text-align: center;
+        }
+      }
 
       .item {
         a {

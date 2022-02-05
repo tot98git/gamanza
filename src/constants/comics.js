@@ -32,6 +32,7 @@ export const COMICS_PROPERTIES = {
   CHARACTERS: 'characters',
   CREATORS: 'creators',
   DIAMOND_CODE: 'diamondCode',
+  DATE: 'date',
 };
 
 export const COMICS_PROPERTIES_LABELS = {
@@ -41,4 +42,5 @@ export const COMICS_PROPERTIES_LABELS = {
   CHARACTERS: 'Characters',
   CREATORS: 'Creators',
   DIAMOND_CODE: 'Diamond code',
+  DATE: 'Date',
 };
