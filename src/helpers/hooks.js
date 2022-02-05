@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { getComics } from '../api/comicsService';
 
 export const useFetchData = (format, offset, setOffset) => {
+  console.log(format);
   const [comicsList, setComicsList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -17,11 +18,12 @@ export const useFetchData = (format, offset, setOffset) => {
 
     await setLoading(true);
     const {
-      data: { data: { results = [], count } = {} },
+      data: { data: { results = [], total } = {} },
     } = await getComics({ format, offset });
-    setComicsList([...comicsList, ...results]);
+
+    setComicsList(!offset ? results : [...comicsList, ...results]);
     setLoading(false);
-    setHasMore(count > 0);
+    setHasMore(offset + 20 < total);
   }, [format, offset]);
 
   useEffect(() => {
@@ -37,8 +39,8 @@ export const useInfiniteList = (incrementCounter, isLoading, hasMore) => {
     (node) => {
       if (isLoading || !hasMore) return;
       if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
+      observer.current = new IntersectionObserver(([entry = {}]) => {
+        if (entry.isIntersecting) {
           console.log('visible');
 
           incrementCounter();

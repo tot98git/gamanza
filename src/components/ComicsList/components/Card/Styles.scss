@@ -17,8 +17,13 @@
       display: flex;
       align-items: center;
 
+      &:empty {
+        background-color: $gray;
+      }
       img {
         width: 100%;
+        height: 100%;
+        background-color: lighten($gray, 20%);
       }
     }
 
@@ -26,15 +31,16 @@
       padding: 2%;
       box-sizing: border-box;
       height: 100%;
-      max-width: 70%;
+      width: 70%;
       justify-content: flex-end;
 
       .info-container {
         justify-content: space-between;
         height: 100%;
+        width: 100%;
 
         .title {
-          font-size: 90%;
+          font-size: 70%;
         }
 
         .additional-info {
@@ -42,11 +48,12 @@
           width: 100%;
 
           .container {
-            width: 70%;
+            width: 60%;
             align-items: flex-end;
 
             & > * {
               margin: 2% 0;
+              font-size: 70%;
             }
 
             span {

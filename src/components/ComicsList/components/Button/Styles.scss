@@ -9,8 +9,15 @@
   justify-content: center;
   font-family: 'Quicksand';
   font-weight: 600;
+  transition: background-color 0.4s;
 
   &:hover {
     cursor: pointer;
+    background-color: darken($red, 10%);
+  }
+
+  &:active {
+    transition-duration: 1s;
+    background-color: darken($red, 30%);
   }
 }

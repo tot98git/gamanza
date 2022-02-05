@@ -10,12 +10,12 @@ const Header = () => {
   const currFormat = (current) => (current === format ? '_current' : '');
 
   const itemRenderer = (key) => {
-    const currentFormat = COMICS_FORMAT[key];
+    const currentFormat = COMICS_FORMAT[key] || '';
 
     return (
       <div className="item" key={key}>
         <Link className={currFormat(currentFormat)} to={`/${currentFormat}`}>
-          <span>{COMICS_FORMAT_LABELS[key]}</span>
+          <span>{COMICS_FORMAT_LABELS[key] || key}</span>
         </Link>
       </div>
     );
@@ -27,7 +27,10 @@ const Header = () => {
         <div className="logo-wrapper">
           <img src={logo} alt="Logo" />
         </div>
-        <div className="menu-items">{keys.map(itemRenderer)}</div>
+        <div className="menu-items">
+          {itemRenderer('All')}
+          {keys.map(itemRenderer)}
+        </div>
       </div>
     </div>
   );
