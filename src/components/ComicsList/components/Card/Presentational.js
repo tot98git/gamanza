@@ -1,9 +1,9 @@
 import Button from '../Button/Presentational';
 
-const ComicsCard = ({ handleCurrentComic, ...comic }) => {
+const ComicsCard = ({ observer, handleCurrentComic, ...comic }) => {
   const { thumbnail, title, price, id } = comic;
   return (
-    <div className="comics-card" key={id}>
+    <div className="comics-card" key={id} ref={observer}>
       <div className="container _flex">
         <div className="thumbnail">
           <img src={thumbnail} alt="Thumbnail" />

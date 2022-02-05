@@ -10,7 +10,7 @@ const Breadcrumb = () => {
         Home{' '}
         {format ? (
           <>
-            > <span>{COMICS_FORMAT_LABELS[format.toUpperCase()]} </span>
+            > <span>{COMICS_FORMAT_LABELS[format.toUpperCase()]}s </span>
           </>
         ) : (
           ''

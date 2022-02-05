@@ -1,38 +1,53 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { getComics } from '../api/comicsService';
 
-export const useFetchData = (format) => {
+export const useFetchData = (format, offset, setOffset) => {
   const [comicsList, setComicsList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    const fetchData = async () => {
-      const {
-        data: { data: { results = [] } = {} },
-      } = await getComics({ format });
-
-      setComicsList(results);
-    };
-
-    fetchData();
-    setLoading(false);
+    setComicsList([]);
+    setOffset(0);
+    setHasMore(true);
   }, [format]);
 
-  return [comicsList, loading];
+  const fetchData = useCallback(async () => {
+    if (!hasMore) return;
+
+    await setLoading(true);
+    const {
+      data: { data: { results = [], count } = {} },
+    } = await getComics({ format, offset });
+    setComicsList([...comicsList, ...results]);
+    setLoading(false);
+    setHasMore(count > 0);
+  }, [format, offset]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return [comicsList, fetchData, loading, hasMore];
 };
 
-export const useInfiniteList = () => {
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
-    )
-      return;
-    console.log('Fetch more list items!');
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+export const useInfiniteList = (incrementCounter, isLoading, hasMore) => {
+  const observer = useRef();
+  const finalElement = useCallback(
+    (node) => {
+      if (isLoading || !hasMore) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          console.log('visible');
+
+          incrementCounter();
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [incrementCounter, isLoading, hasMore]
+  );
+
+  return [observer, finalElement];
 };

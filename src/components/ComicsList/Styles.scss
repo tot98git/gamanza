@@ -5,12 +5,18 @@
 .comics-wrapper {
   width: 100%;
   display: flex;
-
+  padding: 2% 0;
+  box-sizing: border-box;
   & > .container {
     margin: auto;
     width: $CONTAINER-RATIO;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: repeat(2, auto) repeat(3, 1fr);
+  }
+
+  .loading-container {
+    text-align: center;
+    margin: 2% 0;
   }
 }

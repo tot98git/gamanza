@@ -3,7 +3,7 @@ import { mapComicItemToCard } from '../../helpers/comics';
 import Modal from './components/Modal/Presentational';
 import { useState } from 'react';
 
-const ComicsList = ({ list }) => {
+const ComicsList = ({ list, loading, observer }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentComic, setCurrentComic] = useState({});
 
@@ -13,8 +13,10 @@ const ComicsList = ({ list }) => {
     setModalOpen(true);
   };
 
-  const cardRenderer = (item) => (
+  const cardRenderer = (item, idx) => (
     <Card
+      key={item.id}
+      observer={idx === list.length - 1 ? observer : null}
       {...mapComicItemToCard(item)}
       onClick={toggleModal}
       handleCurrentComic={handleCurrentComic}
@@ -22,13 +24,16 @@ const ComicsList = ({ list }) => {
   );
 
   return (
-    <div className="comics-wrapper">
+    <div className="comics-wrapper _flex _column">
       <Modal
         visible={modalOpen}
         handleClose={toggleModal}
         data={currentComic}
       />
       <div className="container">{list.map(cardRenderer)}</div>
+      {loading && (
+        <div className="loading-container">Loading more results...</div>
+      )}
     </div>
   );
 };

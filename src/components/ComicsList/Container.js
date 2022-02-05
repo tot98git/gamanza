@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { getComics } from '../../api/comicsService';
@@ -8,10 +9,22 @@ import Presentational from './Presentational';
 
 const ComicsListContainer = () => {
   const { format } = useParams();
-  const [comicsList, loading] = useFetchData(format);
-  useInfiniteList();
+  const [offset, setOffset] = useState(0);
+  const [comicsList, , loading, hasMore] = useFetchData(
+    format,
+    offset,
+    setOffset
+  );
 
-  return <Presentational list={comicsList} />;
+  const incrementOffset = () => {
+    setOffset(offset + 20);
+  };
+
+  const [, observer] = useInfiniteList(incrementOffset, loading, hasMore);
+
+  return (
+    <Presentational list={comicsList} loading={loading} observer={observer} />
+  );
 };
 
 export default ComicsListContainer;
