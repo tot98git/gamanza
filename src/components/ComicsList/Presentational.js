@@ -15,7 +15,7 @@ const ComicsList = ({ list, loading, observer }) => {
 
   const cardRenderer = (item, idx) => (
     <Card
-      key={item.id}
+      key={`${item.id}-${idx}`}
       observer={idx === list.length - 1 ? observer : null}
       {...mapComicItemToCard(item)}
       onClick={toggleModal}

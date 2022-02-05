@@ -7,7 +7,9 @@ const Header = () => {
 
   const keys = Object.keys(COMICS_FORMAT);
 
-  const currFormat = (current) => (current === format ? '_current' : '');
+  const currFormat = (current) => {
+    return current === format || (!current && !format) ? '_current' : '';
+  };
 
   const itemRenderer = (key) => {
     const currentFormat = COMICS_FORMAT[key] || '';

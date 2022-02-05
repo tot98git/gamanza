@@ -13,7 +13,7 @@ const Breadcrumb = () => {
             > <span>{COMICS_FORMAT_LABELS[format.toUpperCase()]}s </span>
           </>
         ) : (
-          ''
+          '> All'
         )}
       </div>
     </div>

@@ -1,13 +1,28 @@
+/* 
+  NOTE: The creation of these double collection that seemingly do the same thing is because I thought that API would accept string parameters in snake case as it's usually common. 
+  I'm leaving them to demonstrate the principle.
+*/
+
 export const COMICS_FORMAT = {
   COMIC: 'comic',
   MAGAZINE: 'magazine',
+  'TRADE PAPERBACK': 'trade paperback',
+  HARDCOVER: 'hardcover',
   DIGEST: 'digest',
+  'GRAPHIC NOVEL': 'graphic novel',
+  'DIGITAL COMIC': 'digital comic',
+  'INFINITE COMIC': 'infinite comic',
 };
 
 export const COMICS_FORMAT_LABELS = {
   COMIC: 'comic',
   MAGAZINE: 'magazine',
+  'TRADE PAPERBACK': 'trade paperback',
+  HARDCOVER: 'hardcover',
   DIGEST: 'digest',
+  'GRAPHIC NOVEL': 'graphic novel',
+  'DIGITAL COMIC': 'digital comic',
+  'INFINITE COMIC': 'infinite comic',
 };
 
 export const COMICS_PROPERTIES = {

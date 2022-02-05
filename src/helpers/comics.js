@@ -5,7 +5,7 @@ export const mapComicItemToCard = (item) => {
 
   const { path, extension } = thumbnail || {};
 
-  const finalThumbnail = `${path}.${extension}`;
+  const finalThumbnail = `${path}/portrait_medium.${extension}`;
 
   const [{ price }] = prices.sort((a = {}, b = {}) => a.price < b.price);
 
